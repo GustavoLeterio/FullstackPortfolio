@@ -1,0 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
+:root{
+  --font-color:black;
+  --primary-color:#FFC9C9;
+  --secondary-color:#6361A1;
+  // --window-shadow:;
+}
+
+body{
+background-color: var(--secondary-color);
+}
+
+.window{
+  background-color: var(--primary-color);
+}
