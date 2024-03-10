@@ -1,10 +1,8 @@
 .window {
   position: absolute;
   border: 2px solid black;
-  .content{
-    position: absolute;
-    overflow: auto;
-  }
+  transform-origin: "bottom";
+  transform: translate(0px,0px);
   .header {
     border-bottom: 2px solid #000000;
     display: flex;
@@ -16,30 +14,33 @@
       align-items: center;
       width: 100%;
       gap: 8px;
-      padding: 2px 8px;
 
       img {
-        width: 1.75rem;
+        width: 1.5rem;
       }
 
       .title {
-        font-size: 1.5rem;
+        font-size: 1.25rem;
         text-shadow: 0 0 1px black;
       }
     }
 
     .buttons {
       display: flex;
-
       .button {
+        flex: 1;
+        border: none;
+        padding: 4px 6px;
+        border-left: 2px solid #000000;
         font-size: 1.25rem;
         text-shadow: 0 0 1px black;
-        padding: 8px 8px;
-        border: none;
-        border-left: 2px solid #000000;
         cursor: pointer;
         background-color: transparent;
       }
     }
+  }
+  .content {
+    position: absolute;
+    overflow: auto;
   }
 }

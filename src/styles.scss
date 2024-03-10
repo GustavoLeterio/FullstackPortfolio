@@ -1,16 +1,17 @@
-@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=VT323&display=swap");
 
-:root{
-  --font-color:black;
-  --primary-color:#FFC9C9;
-  --secondary-color:#6361A1;
+:root {
+  --font-color: black;
+  --primary-color: #ffc9c9;
+  --secondary-color: #6361a1;
   // --window-shadow:;
 }
 
-body{
-background-color: var(--secondary-color);
+body {
+  background-color: var(--secondary-color);
+  overflow: hidden;
 }
 
-.window{
+.window {
   background-color: var(--primary-color);
 }

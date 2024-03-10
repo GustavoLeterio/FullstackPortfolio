@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrl: './call-me-baby.component.scss'
 })
 export class CallMeBabyComponent {
-
+  isClosed:boolean = false;
 }

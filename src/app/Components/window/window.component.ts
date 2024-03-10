@@ -1,6 +1,5 @@
 import {
   animate,
-  keyframes,
   style,
   transition,
   trigger,
@@ -18,6 +17,8 @@ import {
   ViewChild,
 } from '@angular/core';
 
+//https://andreadicioccio.medium.com/use-variables-in-angular-animations-63c4c0fb554f
+
 @Component({
   selector: 'app-window',
   templateUrl: './window.component.html',
@@ -26,32 +27,38 @@ import {
     trigger('inOutAnimation', [
       transition(':enter', [
         style({
-          width: '1px',
-          height: '1px',
-          transform: 'translate(-50%,100%)',
+          transform: "scale(0) translate(-50%,100%)",
           opacity: 0,
-          transformOrigin:"bottom-left"
+          transformOrigin: '50% 50%'
         }),
         animate(
-          '500ms ease-in',
+          '500ms linear',
           style({
-            width: 'auto',
-            height: 'auto',
-            transform: 'translate(0px,0px)',
+            transform: "scale(1) translate(0,0)",
             opacity: 1,
+            transformOrigin: '50% 50%'
           })
         ),
       ]),
       transition(':leave', [
-        style({ opacity: 1 }),
-        animate('1000ms', style({ opacity: 0.9, offset: 0 })),
+        style({
+          transform: "scale(1) translate(0,0)",
+          opacity: 1,
+        }),
+        animate(
+          '500ms linear',
+          style({
+            transform: "scale(0) translate(-50%,100%)",
+            opacity: 0,
+          })
+        ),
       ]),
     ]),
   ],
 })
 export class WindowComponent {
   @Input({ required: true }) title: String = 'Program Name';
-  @Input({ required: true }) windowSize: { width: String; height: String } = {
+  @Input({ required: true }) public windowSize: { width: String; height: String } = {
     width: '320px',
     height: '320px',
   };
@@ -68,7 +75,7 @@ export class WindowComponent {
 
   lastPosition: { x: number; y: number } = { x: 100, y: 100 };
 
-  constructor(@Inject(DOCUMENT) private _document: Document) {}
+  constructor(@Inject(DOCUMENT) private _document: Document) { }
 
   close() {
     this.isClosed = true;
