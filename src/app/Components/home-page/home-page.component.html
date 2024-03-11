@@ -1,1 +1,15 @@
-<p>window works!</p>
+<app-window *ngIf="!isClosed" (closeEvent)="isClosed = true" [title]="'BiographBot 2.0'" [position]="position">
+    <Section class="content">
+        <header>
+            <h1>Full-Stack Developer</h1>
+            <h1>Gustavo Letério</h1>
+        </header>
+        <img src="assets/GLeterioPhoto.png" alt="Gustavo Letério Photograph">
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </Section>
+</app-window>

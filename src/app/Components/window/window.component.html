@@ -1,9 +1,9 @@
-<section *ngIf="!isClosed" [@inOutAnimation] #window
-  class="window" [style.width]="windowSize.width" [style.height]="windowSize.height" [style.top.px]="position.y"
+<article *ngIf="!isClosed" [@inOutAnimation] #window
+  class="window"  [style.top.px]="position.y"
   [style.left.px]="position.x">
   <div (mousedown)="startDrag($event)" #header class="header">
     <div class="name">
-      <img src="assets/logo.svg">
+      <img src="assets/logo.svg" alt="LeterioSystem2000 Logo">
       <span class="title">
         {{title}}
       </span>
@@ -13,5 +13,5 @@
       <button (click)="close()" class="button">X</button>
     </div>
   </div>
-  <!-- <ng-content class="content"></ng-content> -->
-</section>
+  <ng-content class="content"></ng-content>
+</article>

@@ -7,17 +7,13 @@ import {
 import { DOCUMENT } from '@angular/common';
 import {
   Component,
-  Directive,
   ElementRef,
   EventEmitter,
-  HostListener,
   Inject,
   Input,
   Output,
   ViewChild,
 } from '@angular/core';
-
-//https://andreadicioccio.medium.com/use-variables-in-angular-animations-63c4c0fb554f
 
 @Component({
   selector: 'app-window',
@@ -27,29 +23,29 @@ import {
     trigger('inOutAnimation', [
       transition(':enter', [
         style({
-          transform: "scale(0) translate(-50%,100%)",
+          transform: "scale(0.4) translate(-50%,-40%)",
           opacity: 0,
-          transformOrigin: '50% 50%'
+          transformOrigin: '0 100%'
         }),
         animate(
-          '500ms linear',
+          '300ms linear',
           style({
-            transform: "scale(1) translate(0,0)",
-            opacity: 1,
-            transformOrigin: '50% 50%'
+            transform: "scale(1) translate(-50%,-50%)",
+            opacity: .3,
           })
         ),
       ]),
       transition(':leave', [
         style({
-          transform: "scale(1) translate(0,0)",
+          transform: "scale(1) translate(-50%,-50%)",
           opacity: 1,
+          transformOrigin: '0 100%'
         }),
         animate(
-          '500ms linear',
+          '300ms linear',
           style({
-            transform: "scale(0) translate(-50%,100%)",
-            opacity: 0,
+            transform: "scale(0.4) translate(-50%,-40%)",
+            opacity: .3,
           })
         ),
       ]),
@@ -58,10 +54,9 @@ import {
 })
 export class WindowComponent {
   @Input({ required: true }) title: String = 'Program Name';
-  @Input({ required: true }) public windowSize: { width: String; height: String } = {
-    width: '320px',
-    height: '320px',
-  };
+
+  @Input({ required: true }) position: { x: number; y: number } = { x: 100, y: 100 };
+
   @Input() isClosed: boolean = false;
   @Input() closable: boolean = true;
 
@@ -71,9 +66,6 @@ export class WindowComponent {
 
   @ViewChild('topBar') topBarRef!: ElementRef;
 
-  position: { x: number; y: number } = { x: 100, y: 100 };
-
-  lastPosition: { x: number; y: number } = { x: 100, y: 100 };
 
   constructor(@Inject(DOCUMENT) private _document: Document) { }
 
@@ -81,7 +73,7 @@ export class WindowComponent {
     this.isClosed = true;
     setTimeout(() => {
       this.closeEvent.emit();
-    }, 350);
+    }, 500);
   }
 
   startDrag(e: any): void {
@@ -97,7 +89,6 @@ export class WindowComponent {
       const dy = e.clientY - mouseY;
       this.position.x = positionX + dx;
       this.position.y = positionY + dy;
-      this.lastPosition = { ...this.position };
     };
 
     const finishDrag = () => {

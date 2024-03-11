@@ -1,1 +1,20 @@
-<p>navbar works!</p>
+<nav>
+    <ul class="links">
+        <li>
+            <img src="assets/logo.svg" alt="LeterioSystem2000 Logo">
+            {{language.navbar.home}}
+        </li>
+        <li>{{language.navbar.about}}</li>
+        <li>{{language.navbar.projectsTechnologies}}</li>
+        <li>
+            {{language.navbar.language}}
+            <img [src]="languageName == 'english'?'assets/IrelandFlag.png':'assets/BrazilFlag.png'" alt="Language Flag">
+        </li>
+    </ul>
+    <ul>
+        <li>
+            <img [src]="languageName?'assets/SoundOpen.png':'assets/SoundMuted.png'" alt="Sound Icon">
+        </li>
+        <li>{{time}}</li>
+    </ul>
+</nav>
