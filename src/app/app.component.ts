@@ -1,13 +1,17 @@
 import { Component } from '@angular/core';
-import { Language, languages } from '../domain/languageObject';
+import { Store } from '@ngrx/store';
+import { TWindowState } from './store/window/window.state';
+import { map } from 'rxjs';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrl: './app.component.scss',
 })
 export class AppComponent {
   title = 'portfolio';
-  language:Language = ["pt", "pt-AO", "pt-BR", "pt-CH", "pt-CV", "pt-GQ",
-  "pt-GW", "pt-LU", "pt-MO", "pt-MZ", "pt-PT", "pt-ST", "pt-TL"].includes(navigator.language) ? languages.portuguese : languages.english;
+
+  constructor(private store:Store<{windowReducer:TWindowState}>){}
+
+  windows$ = this.store.select('windowReducer').pipe(map(e=>e));
 }

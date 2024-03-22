@@ -1,17 +1,17 @@
-<article *ngIf="!isClosed" [@inOutAnimation] #window
-  class="window"  [style.top.px]="position.y"
-  [style.left.px]="position.x">
+@if((window$|async)?.open??false){
+<article (mousedown)="focus()" [@inOutAnimation] #window class="window" [style.top.px]="position.y" [style.left.px]="position.x">
   <div (mousedown)="startDrag($event)" #header class="header">
     <div class="name">
-      <img src="assets/logo.svg" alt="LeterioSystem2000 Logo">
+      <img src="assets/svgs/logo.svg" alt="LeterioSystem2000 Logo">
       <span class="title">
         {{title}}
       </span>
     </div>
-    <div class="buttons">
+    <div *ngIf="closable" class="buttons">
       <button (click)="close()" class="button">-</button>
       <button (click)="close()" class="button">X</button>
     </div>
   </div>
   <ng-content class="content"></ng-content>
 </article>
+}

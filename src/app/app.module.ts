@@ -1,3 +1,6 @@
+import { windowReducer } from './store/window/window.reducer';
+import { languageReducer } from './store/language/language.reducer';
+import { soundReducer } from './store/sound/sound.reducer';
 import { CallMeBabyComponent } from './Components/call-me-baby/call-me-baby.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -11,6 +14,10 @@ import { ProjectronComponent } from './Components/projectron/projectron.componen
 import { BiographBotComponent } from './Components/biograph-bot/biograph-bot.component';
 import { WindowComponent } from './Components/window/window.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ClickOutsideDirective } from '../directives/ClickOutsideDirective';
+import { FormsModule } from '@angular/forms';
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 @NgModule({
   declarations: [
@@ -26,9 +33,17 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ClickOutsideDirective,
+    FormsModule,
+    StoreModule.forRoot({
+      soundReducer,
+      windowReducer,
+      languageReducer,
+    }),
+    StoreDevtoolsModule.instrument({ maxAge: 25 }),
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

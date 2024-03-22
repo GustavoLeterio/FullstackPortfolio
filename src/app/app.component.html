@@ -1,8 +1,11 @@
-<app-navbar [language]="language"></app-navbar>
+<app-navbar></app-navbar>
 <main>
-  <!-- <window-call-me-baby [language]="language"></window-call-me-baby> -->
-  <window-home-page [language]="language"></window-home-page>
-  <!-- <window-ltr-music-player [language]="language"></window-ltr-music-player> -->
-  <!-- <window-projectron [language]="language"></window-projectron> -->
-  <!-- <window-biograph-bot [language]="language"></window-biograph-bot> -->
+  <window-call-me-baby [style.zIndex]="(windows$|async)?.callMeBaby?.zIndex"></window-call-me-baby>
+  <window-home-page [style.zIndex]="(windows$|async)?.homePage?.zIndex"></window-home-page>
+  <window-ltr-music-player [style.zIndex]="(windows$|async)?.ltrMusicPlayer?.zIndex"></window-ltr-music-player>
+  <!-- <window-projectron [isWindowClosed]="isWindowClosed" [(isClosed)]="isWindowClosed.projectron"
+    [windowText]="languages[languageName].projectronWindow"></window-projectron>
+  <window-biograph-bot [isWindowClosed]="isWindowClosed" [(isClosed)]="isWindowClosed.biographBot"
+    [windowText]="languages[languageName].biographBotWindow">
+  </window-biograph-bot> -->
 </main>

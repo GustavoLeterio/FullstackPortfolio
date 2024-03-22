@@ -1,0 +1,29 @@
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .75rem;
+
+  ul {
+    list-style: none;
+    display: flex;
+
+    li button {
+      background-color: transparent;
+      border: 2px solid black;
+      padding: .5rem 1rem;
+      display: flex;
+      cursor: pointer;
+
+      img {
+        transition: 200ms ease-in-out;
+      }
+
+      &:hover {
+        svg {
+          background-color: red;
+        }
+      }
+    }
+  }
+}

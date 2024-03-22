@@ -4,10 +4,11 @@
   --font-color: black;
   --primary-color: #ffc9c9;
   --secondary-color: #6361a1;
+  --link-color: #166AB7;
   // --window-shadow:;
 }
 
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -21,4 +22,30 @@ body {
 
 .window {
   background-color: var(--primary-color);
+}
+
+::-webkit-scrollbar {
+  width: 20px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  border-left: 2px solid black;
+  background: url('assets/images/scrollbarTexture.png');
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: url('assets/images/scrollbarSymbol.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: var(--primary-color);
+  border-left: 2px solid black;
+  border-top: 2px solid black;
+  border-bottom: 2px solid black;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  cursor: pointer;
 }

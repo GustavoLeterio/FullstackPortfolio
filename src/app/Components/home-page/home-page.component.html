@@ -1,15 +1,29 @@
-<app-window *ngIf="!isClosed" (closeEvent)="isClosed = true" [title]="'BiographBot 2.0'" [position]="position">
-    <Section class="content">
-        <header>
-            <h1>Full-Stack Developer</h1>
-            <h1>Gustavo Letério</h1>
-        </header>
-        <img src="assets/GLeterioPhoto.png" alt="Gustavo Letério Photograph">
+<app-window [windowName]="'homePage'" [title]="(language$|async)?.windowName??''" [position]="position">
+  <Section class="content">
+    <header>
+      <h1>{{(language$|async)?.title}}</h1>
+      <h2>Gustavo Letério</h2>
+    </header>
+    <div class="text-content">
+      <div class="personalData">
+        <span>{{(language$|async)?.presentation}}</span>
+        <img src="assets/images/GLeterioPhoto.png" alt="Gustavo Letério Photograph">
         <ul>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
+          @for(phrase of (language$|async)?.curiosities;track $index){
+          <li>{{phrase}}</li>
+          }
         </ul>
-    </Section>
+      </div>
+      <div class="topics">
+        <span>{{(language$|async)?.optionsTitleText}}</span>
+        <ul>
+          @for(option of (language$|async)?.options;track $index){
+          <li (click)="openWindow(option.windowName)">
+            {{option.text}}
+          </li>
+          }
+        </ul>
+      </div>
+    </div>
+  </Section>
 </app-window>

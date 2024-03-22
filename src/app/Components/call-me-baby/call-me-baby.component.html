@@ -1,7 +1,12 @@
-<!-- <app-window *ngIf="!isClosed" (closeEvent)="isClosed = true" title="BiographBot 2.0" [windowSize]="{width:'70%',height:'50%'}">
-    <p>aa</p>
-    {{isClosed}}
-  </app-window>
-  
-  
-   -->
+<app-window [closable]="false" [windowName]="'callMeBaby'" [title]="(language$|async)?.windowName??''"
+  [position]="position">
+  <Section class="content">
+    <p>{{(language$|async)?.legend}}</p>
+    <ul>
+      <li><a href="https://www.linkedin.com/in/gustavoleterio/" target="_blank"><img src="assets/images/linkedinIcon.png" alt="Linkedin Icon"></a></li>
+      <li><a href="https://github.com/GustavoLeterio/" target="_blank"><img src="assets/images/githubIcon.png" alt="Github Icon"></a></li>
+      <li><a href="mailto:gustavoleterio@gmail.com" alt="gustavoleterio@gmail.com" target="_blank"><img src="assets/images/emailIcon.png" alt="Email Icon"></a></li>
+      <li><a href="assets/CV - Gustavo Leterio.pdf" download><img src="assets/images/cvIcon.png" alt="CV Icon"></a></li>
+    </ul>
+  </Section>
+</app-window>

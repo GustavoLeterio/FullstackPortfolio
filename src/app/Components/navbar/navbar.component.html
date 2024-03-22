@@ -1,20 +1,41 @@
 <nav>
-    <ul class="links">
-        <li>
-            <img src="assets/logo.svg" alt="LeterioSystem2000 Logo">
-            {{language.navbar.home}}
+  <ul class="links">
+    <li (click)="openWindow('homePage')">
+      <img src="assets/svgs/logo.svg" alt="LeterioSystem2000 Logo">
+      {{(language$|async)?.home}}
+    </li>
+    <li (click)="openWindow('biographBot')">{{(language$|async)?.about}}</li>
+    <li (click)="openWindow('projectron')">{{(language$|async)?.projectsTechnologies}}</li>
+    <li class="language" (click)="toggleLanguageOptionsIsOpen(!languageOptionsIsOpen)">
+      {{(language$|async)?.language}}
+      <img [src]="languageName == 'english'?'assets/images/IrelandFlag.png':'assets/images/BrazilFlag.png'"
+        alt="Language Flag">
+      <ul (clickOutside)="toggleLanguageOptionsIsOpen(false)" [@inOutAnimation] *ngIf="languageOptionsIsOpen"
+        class="languageOptions">
+        <li (click)="changeLanguage('english')">
+          <img src="assets/images/IrelandFlag.png" alt="Ireland Flag - Language Option">
+          <span>English</span>
         </li>
-        <li>{{language.navbar.about}}</li>
-        <li>{{language.navbar.projectsTechnologies}}</li>
-        <li>
-            {{language.navbar.language}}
-            <img [src]="languageName == 'english'?'assets/IrelandFlag.png':'assets/BrazilFlag.png'" alt="Language Flag">
+        <li (click)="changeLanguage('portuguese')">
+          <img src="assets/images/BrazilFlag.png" alt="Brazil Flag - Language Option">
+          <span>Portuguese</span>
         </li>
-    </ul>
-    <ul>
-        <li>
-            <img [src]="languageName?'assets/SoundOpen.png':'assets/SoundMuted.png'" alt="Sound Icon">
-        </li>
-        <li>{{time}}</li>
-    </ul>
+      </ul>
+    </li>
+  </ul>
+  <ul class="time">
+    <li>
+      <button>
+        <img (click)="isSoundEnabled = !isSoundEnabled"
+          [src]="isSoundEnabled?'assets/images/SoundOpen.png':'assets/images/SoundMuted.png'" alt="Sound Icon">
+      </button>
+      <ul (clickOutside)="toggleLanguageOptionsIsOpen(false)" [@inOutAnimation] *ngIf="languageOptionsIsOpen"
+        class="languageOptions">
+        <input [ngModel]="volume" type="range">
+      </ul>
+    </li>
+  </ul>
+  </li>
+  <li>{{time}}</li>
+  </ul>
 </nav>
