@@ -53,6 +53,7 @@ export class LtrMusicPlayerComponent {
     });
   }
 
+  isPaused: boolean = true;
   musicPlayer: HTMLAudioElement = new Audio();
   audioSources: { sources: string[]; index: number } = {
     sources: ['City_Passanger.mp3', 'Unnamed_Lo-Fi.mp3', 'Water_Drop.mp3'],
@@ -61,44 +62,37 @@ export class LtrMusicPlayerComponent {
 
   ngOnInit() {
     this.sound$.subscribe((state) => {
-      this.musicPlayer.volume = state.volume;
+      console.log(state);
+      this.musicPlayer.volume = state.volume / 100;
+      this.isPaused = state.isPaused;
     });
-    this.musicPlayer.src = 'assets/audios/' + this.audioSources.sources[0];
-
-    const startPlaying = () => {
-      this.musicPlayer.load();
-      this.musicPlayer.play();
-      this._document.removeEventListener('mousemove', startPlaying);
-    };
-    this._document.addEventListener('mousemove', startPlaying);
   }
 
-  ngOnDestroy(): void {}
-
   changeMusic(go: 'forward' | 'backward') {
-    this.musicPlayer.pause();
-    this.audioSources.index =
-      go == 'forward'
-        ? this.audioSources.index == this.audioSources.sources.length - 1
-          ? this.audioSources.index + 1
-          : 0
-        : this.audioSources.index - 1;
-    this.musicPlayer.src = this.audioSources.sources[this.audioSources.index];
+    if (go == 'forward') {
+      if (this.audioSources.index == this.audioSources.sources.length - 1)
+        this.audioSources.index = 0;
+      else this.audioSources.index += 1;
+    } else {
+      if (this.audioSources.index == 0) this.audioSources.index -= 1;
+    }
+    this.setAndPlay();
+  }
+
+  setAndPlay() {
+    this.musicPlayer.src =
+      'assets/audios/' + this.audioSources.sources[this.audioSources.index];
+    this.store.dispatch(changePause({ isPaused: false }));
     this.musicPlayer.load();
     this.musicPlayer.play();
   }
 
   togglePause() {
-    var isPaused: boolean = false;
-    this.sound$.subscribe((state) => {
-      isPaused = state.isPaused;
-    });
-    this.store.dispatch(changePause({ isPaused: !isPaused }));
-    if (!isPaused) {
+    if (!this.isPaused) {
+      this.store.dispatch(changePause({ isPaused: !this.isPaused }));
       this.musicPlayer.pause();
-    } else {
-      this.musicPlayer.load();
-      this.musicPlayer.play();
+      return;
     }
+    this.setAndPlay();
   }
 }

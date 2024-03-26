@@ -12,11 +12,11 @@
         alt="Language Flag">
       <ul (clickOutside)="toggleLanguageOptionsIsOpen(false)" [@inOutAnimation] *ngIf="languageOptionsIsOpen"
         class="languageOptions">
-        <li (click)="changeLanguage('english')">
+        <li (click)="dispatchLanguage('english')">
           <img src="assets/images/IrelandFlag.png" alt="Ireland Flag - Language Option">
           <span>English</span>
         </li>
-        <li (click)="changeLanguage('portuguese')">
+        <li (click)="dispatchLanguage('portuguese')">
           <img src="assets/images/BrazilFlag.png" alt="Brazil Flag - Language Option">
           <span>Portuguese</span>
         </li>
@@ -25,17 +25,15 @@
   </ul>
   <ul class="time">
     <li>
-      <button>
-        <img (click)="isSoundEnabled = !isSoundEnabled"
-          [src]="isSoundEnabled?'assets/images/SoundOpen.png':'assets/images/SoundMuted.png'" alt="Sound Icon">
+      <button (click)="toggleVolumeRangeIsOpen(!volumeRangeIsOpen)">
+        <img [src]="volume != 0?'assets/images/SoundOpen.png':'assets/images/SoundMuted.png'" alt="Sound Icon">
       </button>
-      <ul (clickOutside)="toggleLanguageOptionsIsOpen(false)" [@inOutAnimation] *ngIf="languageOptionsIsOpen"
+      <ul (clickOutside)="toggleVolumeRangeIsOpen(false)" [@inOutAnimation] *ngIf="volumeRangeIsOpen"
         class="languageOptions">
-        <input [ngModel]="volume" type="range">
+        <input [(ngModel)]="volume" (ngModelChange)="dispatchVolume()" type="range">
+        {{volume}}
       </ul>
     </li>
-  </ul>
-  </li>
-  <li>{{time}}</li>
+    <li>{{time}}</li>
   </ul>
 </nav>

@@ -1,22 +1,29 @@
 <app-window [closable]="false" [windowName]="'ltrMusicPlayer'" [title]="(language$|async)?.windowName??''"
   [position]="position">
   <Section class="content">
-    <p *ngIf="!(sound$|async)?.isPaused">{{(language$|async)?.playing}}</p>
-    <p *ngIf="(sound$|async)?.isPaused">{{(language$|async)?.paused}}</p>
+    @if(isPaused){
+    <p>{{(language$|async)?.paused}}</p>
+    }
+    @else{
+    <p>{{(language$|async)?.playing}}</p>
+    }
     <ul>
       <li>
         <button (click)="changeMusic('backward')">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
               d="M3.69231 10.9995L22.5655 0.777C22.7045 0.701843 22.866 0.658726 23.0328 0.652244C23.1996 0.645761 23.3654 0.676156 23.5126 0.740189C23.6598 0.804222 23.7829 0.899497 23.8687 1.01586C23.9545 1.13223 23.9999 1.26534 24 1.401V22.599C23.9999 22.7347 23.9545 22.8678 23.8687 22.9841C23.7829 23.1005 23.6598 23.1958 23.5126 23.2598C23.3654 23.3238 23.1996 23.3542 23.0328 23.3478C22.866 23.3413 22.7045 23.2982 22.5655 23.223L3.69231 13.0005V22.5C3.69231 22.8978 3.4978 23.2794 3.15158 23.5607C2.80536 23.842 2.33578 24 1.84615 24C1.35652 24 0.886947 23.842 0.540726 23.5607C0.194505 23.2794 0 22.8978 0 22.5V1.5C0 1.10218 0.194505 0.720645 0.540726 0.43934C0.886947 0.158036 1.35652 0 1.84615 0C2.33578 0 2.80536 0.158036 3.15158 0.43934C3.4978 0.720645 3.69231 1.10218 3.69231 1.5V10.9995Z"
-              fill="black" /></button>
-        </svg>
+              fill="black" />
+          </svg>
+        </button>
       </li>
-      <li><button (click)="togglePause()">
+      <li>
+        <button (click)="togglePause()">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            @if(!(sound$|async)?.isPaused){
+            @if(isPaused){
             <path d="M24 12.0011L0 24V0L24 12.0011Z" fill="black" />
-            }else{
+            }
+            @else{
             <path d="M16 24V0H24V24H16ZM0 24V0H8V24H0Z" fill="black" />
             }
           </svg>

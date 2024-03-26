@@ -6,6 +6,6 @@ export const changePause = createAction(
 );
 
 export const changeVolume = createAction(
-  '[Sound] Toggle IsPaused',
+  '[Sound] Change Volume',
   props<{volume:number}>()
 );

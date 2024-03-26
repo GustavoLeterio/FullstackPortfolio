@@ -21,6 +21,7 @@ nav {
 
     &>li {
       position: relative;
+      z-index: 1000000000000;
 
       .languageOptions {
         position: absolute;
@@ -37,13 +38,15 @@ nav {
         img {
           cursor: pointer;
         }
-        & li{
+
+        & li {
           display: flex;
           align-items: center;
           border: none;
           padding: .25rem .5rem;
           border-top: 2px solid black;
-          &:first-child{
+
+          &:first-child {
             border: none;
           }
         }

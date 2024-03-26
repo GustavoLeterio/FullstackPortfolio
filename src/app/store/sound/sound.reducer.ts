@@ -3,8 +3,8 @@ import { changePause, changeVolume } from './sound.actions';
 import { ISoundState } from './sound.state';
 
 export const inicialState: ISoundState = {
-  isPaused:false,
-  volume: .2,
+  isPaused:true,
+  volume: 20,
 };
 
 export const soundReducer = createReducer(
