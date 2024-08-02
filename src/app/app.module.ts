@@ -4,8 +4,6 @@ import { soundReducer } from './store/sound/sound.reducer';
 import { CallMeBabyComponent } from './Components/call-me-baby/call-me-baby.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './Components/navbar/navbar.component';
 import { HomePageComponent } from './Components/home-page/home-page.component';
@@ -18,6 +16,7 @@ import { ClickOutsideDirective } from '../directives/ClickOutsideDirective';
 import { FormsModule } from '@angular/forms';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { NgxParticlesModule } from "@tsparticles/angular";
 
 @NgModule({
   declarations: [
@@ -31,8 +30,8 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
     WindowComponent,
   ],
   imports: [
+    NgxParticlesModule,
     BrowserModule,
-    AppRoutingModule,
     BrowserAnimationsModule,
     ClickOutsideDirective,
     FormsModule,

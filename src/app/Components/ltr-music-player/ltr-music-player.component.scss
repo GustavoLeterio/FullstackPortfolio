@@ -1,27 +1,67 @@
 .content {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  width: 20vw;
   gap: .75rem;
+  padding: .5rem;
+  #waveform{
+    cursor: pointer;
+  }
+  .isPaused {
+    font-size: 1.5rem;
+    width: 100%;
+    border-bottom: 2px solid black;
+    padding-bottom: .5rem;
+    text-align: center;
+  }
 
-  ul {
+  .info {
+    .title {
+      font-size: 1.75rem;
+      font-weight: 400;
+    }
+
+    .time,
+    .autor {
+      font-size: 1.25rem;
+      font-weight: 400;
+    }
+  }
+
+  .buttons {
     list-style: none;
     display: flex;
 
-    li button {
-      background-color: transparent;
+    li {
       border: 2px solid black;
-      padding: .5rem 1rem;
-      display: flex;
-      cursor: pointer;
 
-      img {
-        transition: 200ms ease-in-out;
+      &:first-child {
+        border-radius: .5rem 0 0 .5rem;
+        border-right: none;
       }
 
-      &:hover {
-        svg {
-          background-color: red;
+      &:last-child {
+        border-radius: 0 .5rem .5rem 0;
+        border-left: none;
+      }
+
+      button {
+        border: none;
+        background-color: transparent;
+        padding: .5rem 1rem;
+        display: flex;
+        cursor: pointer;
+
+        path {
+          transition: 100ms ease-in-out;
+        }
+
+        &:hover {
+          svg path {
+            fill: var(--link-color);
+            stroke: var(--secondary-color);
+            stroke-width: 1px;
+          }
         }
       }
     }

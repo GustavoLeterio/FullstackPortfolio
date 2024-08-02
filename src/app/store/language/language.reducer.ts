@@ -36,7 +36,8 @@ const languages: {
     ltrMusicPlayerWindow: {
       windowName: 'LTR Music Player',
       playing: 'Now Playing',
-      paused: 'Paused...',
+      paused: 'Paused',
+      loading: 'Loading...',
     },
     projectronWindow: {},
     biographBotWindow: {},
@@ -72,7 +73,8 @@ const languages: {
     ltrMusicPlayerWindow: {
       windowName: 'LTR Music Player',
       playing: 'Tocando',
-      paused: 'Pausado...',
+      paused: 'Pausado',
+      loading: 'Carregando...',
     },
     projectronWindow: {},
     biographBotWindow: {},

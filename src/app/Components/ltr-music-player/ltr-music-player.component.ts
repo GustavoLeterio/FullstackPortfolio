@@ -1,5 +1,6 @@
 import { Observable, map } from 'rxjs';
 import {
+  ChangeDetectorRef,
   Component,
   EventEmitter,
   HostListener,
@@ -11,7 +12,7 @@ import { Store } from '@ngrx/store';
 import { ILanguageState } from '../../store/language/language.state';
 import { ISoundState } from '../../store/sound/sound.state';
 import { DOCUMENT } from '@angular/common';
-import { changePause } from '../../store/sound/sound.actions';
+import WaveSurfer from 'wavesurfer.js';
 @Component({
   selector: 'window-ltr-music-player',
   templateUrl: './ltr-music-player.component.html',
@@ -27,7 +28,6 @@ export class LtrMusicPlayerComponent {
       soundReducer: ISoundState;
     }>
   ) {}
-
   language$ = this.store
     .select('languageReducer')
     .pipe(map((e) => e.texts.ltrMusicPlayerWindow));
@@ -37,8 +37,8 @@ export class LtrMusicPlayerComponent {
   //X and Y as percentage position of the screen,
   //simple translate(-50%,-50%) and left/top manipulation on WindowComponent
   position: { x: number; y: number } = {
-    x: (window.innerWidth * 50) / 100,
-    y: (window.innerHeight * 50) / 100,
+    x: (window.innerWidth * 15) / 100,
+    y: (window.innerHeight * 80) / 100,
   };
 
   timeoutResize: any;
@@ -47,52 +47,115 @@ export class LtrMusicPlayerComponent {
     clearTimeout(this.timeoutResize);
     this.timeoutResize = setTimeout(() => {
       this.position = {
-        x: (window.innerWidth * 50) / 100,
-        y: (window.innerHeight * 50) / 100,
+        x: (window.innerWidth * 15) / 100,
+        y: (window.innerHeight * 80) / 100,
       };
     });
   }
 
-  isPaused: boolean = true;
-  musicPlayer: HTMLAudioElement = new Audio();
-  audioSources: { sources: string[]; index: number } = {
-    sources: ['City_Passanger.mp3', 'Unnamed_Lo-Fi.mp3', 'Water_Drop.mp3'],
-    index: 0,
+  music: {
+    wave: WaveSurfer | null;
+    isLoading: boolean;
+    audioSources: {
+      musics: { source: string; name: string; author: string }[];
+      index: number;
+    };
+  } = {
+    audioSources: {
+      musics: [
+        {
+          source: 'City_Passanger.mp3',
+          name: 'City Passanger',
+          author: 'Gustavo Letério',
+        },
+        {
+          source: 'Unnamed_Lo-Fi.mp3',
+          name: 'City Passanger',
+          author: 'Gustavo Letério',
+        },
+        {
+          source: 'Water_Drop.mp3',
+          name: 'City Passanger',
+          author: 'Gustavo Letério',
+        },
+      ],
+      index: 0,
+    },
+    wave: null,
+    isLoading: true,
   };
 
-  ngOnInit() {
-    this.sound$.subscribe((state) => {
-      console.log(state);
-      this.musicPlayer.volume = state.volume / 100;
-      this.isPaused = state.isPaused;
-    });
+  ngAfterViewInit() {
+    this.changeMusic();
   }
 
-  changeMusic(go: 'forward' | 'backward') {
+  changeMusicIndex(go: 'forward' | 'backward') {
     if (go == 'forward') {
-      if (this.audioSources.index == this.audioSources.sources.length - 1)
-        this.audioSources.index = 0;
-      else this.audioSources.index += 1;
+      if (
+        this.music.audioSources.index ==
+        this.music.audioSources.musics.length - 1
+      )
+        this.music.audioSources.index = 0;
+      else this.music.audioSources.index += 1;
     } else {
-      if (this.audioSources.index == 0) this.audioSources.index -= 1;
+      if (this.music.audioSources.index == 0)
+        this.music.audioSources.index =
+          this.music.audioSources.musics.length - 1;
+      else this.music.audioSources.index -= 1;
     }
-    this.setAndPlay();
+    this.changeMusic();
   }
 
-  setAndPlay() {
-    this.musicPlayer.src =
-      'assets/audios/' + this.audioSources.sources[this.audioSources.index];
-    this.store.dispatch(changePause({ isPaused: false }));
-    this.musicPlayer.load();
-    this.musicPlayer.play();
+  setTimeAsMinSec(time: number) {
+    let minutes = Math.floor(time / 60);
+    let remainingSeconds = Math.floor(time % 60);
+
+    let formattedMinutes = minutes < 10 ? '0' + minutes : minutes;
+    let formattedSeconds =
+      remainingSeconds < 10 ? '0' + remainingSeconds : remainingSeconds;
+
+    return formattedMinutes + ':' + formattedSeconds;
+  }
+
+  changeMusic() {
+    this.music.wave?.destroy();
+    this.music.isLoading = true;
+    this.generateWaveform(
+      this.music.audioSources.musics[this.music.audioSources.index].source
+    );
   }
 
   togglePause() {
-    if (!this.isPaused) {
-      this.store.dispatch(changePause({ isPaused: !this.isPaused }));
-      this.musicPlayer.pause();
-      return;
+    if (!this.music.wave) {
+      this.changeMusic();
     }
-    this.setAndPlay();
+    if (this.music.wave?.isPlaying()) {
+      this.music.wave?.pause();
+    } else {
+      this.music.wave?.play();
+    }
+  }
+  generateWaveform(source: string): void {
+    this.music.wave = WaveSurfer.create({
+      ...this.music.wave?.options,
+      container: '#waveform',
+      waveColor: 'grey',
+      progressColor: 'purple',
+      url: source,
+      cursorColor: 'transparent',
+      height: 50,
+      dragToSeek: true,
+    });
+    this.music.wave.on('ready', () => {
+      this.sound$.subscribe((state) => {
+        this.music.wave?.setVolume(state.volume / 100);
+      });
+      this.music.isLoading = false;
+      this.music.wave?.play();
+    });
+    this.music.wave.load('/assets/audios/' + source);
+    this.music.wave?.on('finish', () => {
+      this.changeMusicIndex('forward');
+    });
   }
 }

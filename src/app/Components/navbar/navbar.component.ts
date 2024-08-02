@@ -55,7 +55,7 @@ export class NavbarComponent {
   timeChangeInterval: any;
   time: string = '';
   volumeRangeIsOpen: boolean = false;
-  volume: number = 20;
+  volume: number = 0;
   constructor(
     private store: Store<{
       windowReducer: TWindowState;
@@ -65,6 +65,9 @@ export class NavbarComponent {
   ) {}
 
   ngOnInit() {
+    this.sound$.subscribe((state) => {
+      this.volume = state.volume;
+    });
     this.dispatchLanguage(this.languageName);
     this.timeChangeInterval = setInterval(() => {
       this.setTime(this.languageName);

@@ -21,9 +21,124 @@ nav {
 
     &>li {
       position: relative;
-      z-index: 1000000000000;
+      .volumeOptions {
+        flex-direction: row !important;
+        align-items: center;
+        gap: .5rem;
+        font-size: 1.5rem;
+        padding: .75rem .5rem;
 
-      .languageOptions {
+        span {
+          width: 2rem;
+          text-align: center;
+        }
+
+        input {
+          background-color: var(--secondary-color);
+          cursor: w-resize;
+          border-radius: 1rem;
+          box-shadow: 0 0 0 2px black;
+          background: transparent;
+          height: 1rem;
+          -webkit-appearance: none;
+          appearance: none;
+          height: 100%;
+
+          @media screen and (-webkit-min-device-pixel-ratio:0) {
+            & {
+              overflow: hidden;
+              -webkit-appearance: none;
+              background-color: var(--secondary-color);
+            }
+
+            &::-webkit-slider-runnable-track {
+              height: 16px;
+              -webkit-appearance: none;
+              color: transparent;
+              margin-top: -1px;
+            }
+
+            &::-webkit-slider-thumb {
+              width: 10px;
+              -webkit-appearance: none;
+              height: 16px;
+              cursor: pointer;
+              background: url('/assets/images/scrollbarSymbol.png');
+              background-size: 50%;
+              background-repeat: no-repeat;
+              background-position: center;
+              background-color: white;
+              box-shadow: 0 0 0 2px black, -80px 0 0 80px var(--link-color);
+              filter: brightness(1.1);
+            }
+          }
+
+          &::-ms-track {
+            width: 300px;
+            height: 5px;
+            background: var(--secondary-color);
+            border: none;
+            border-radius: 3px;
+          }
+
+          &::-ms-thumb {
+            border: none;
+            height: 16px;
+            width: 16px;
+            border-radius: 50%;
+            background: var(--secondary-color);
+            border: 1px solid var(--secondary-color);
+            margin-top: -4px;
+          }
+
+          &::-moz-range-track {
+            width: 300px;
+            height: 5px;
+            background: var(--secondary-color);
+            border: none;
+            border-radius: 3px;
+          }
+
+          &::-moz-range-thumb {
+            border: none;
+            height: 16px;
+            width: 16px;
+            border-radius: 50%;
+            background: var(--secondary-color);
+            border: 1px solid var(--secondary-color);
+            margin-top: -4px;
+          }
+
+          &:focus::-moz-range-track {
+            background: var(--link-color);
+          }
+        }
+
+        &::-webkit-slider-runnable-track {
+          width: 300px;
+          height: 5px;
+          background: var(--secondary-color);
+          border: none;
+          border-radius: 3px;
+        }
+
+        &::-webkit-slider-thumb {
+          -webkit-appearance: none;
+          border: none;
+          height: 16px;
+          width: 16px;
+          border-radius: 50%;
+          background: var(--secondary-color);
+          border: 1px solid var(--secondary-color);
+          margin-top: -4px;
+        }
+
+        &:focus::-webkit-slider-runnable-track {
+          background: var(--link-color);
+        }
+      }
+
+      .dropdown {
         position: absolute;
         top: calc(100% + 1px);
         left: -2px;

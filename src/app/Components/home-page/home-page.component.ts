@@ -29,7 +29,7 @@ export class HomePageComponent {
   //simple translate(-50%,-50%) and left/top manipulation on WindowComponent
   position: { x: number; y: number } = {
     x: (window.innerWidth * 50) / 100,
-    y: (window.innerHeight * 50) / 100,
+    y: (window.innerHeight * 40) / 100,
   };
 
   ngOnInit() {
@@ -45,7 +45,7 @@ export class HomePageComponent {
     this.timeoutResize = setTimeout(() => {
       this.position = {
         x: (window.innerWidth * 50) / 100,
-        y: (window.innerHeight * 50) / 100,
+        y: (window.innerHeight * 40) / 100,
       };
     });
   }

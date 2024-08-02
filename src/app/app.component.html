@@ -1,5 +1,6 @@
 <app-navbar></app-navbar>
-<main>
+<main class="body">
+  <ngx-particles style="z-index: -1;" id="tsparticles" [options]="particlesSettings"></ngx-particles>
   <window-call-me-baby [style.zIndex]="(windows$|async)?.callMeBaby?.zIndex"></window-call-me-baby>
   <window-home-page [style.zIndex]="(windows$|async)?.homePage?.zIndex"></window-home-page>
   <window-ltr-music-player [style.zIndex]="(windows$|async)?.ltrMusicPlayer?.zIndex"></window-ltr-music-player>

@@ -11,7 +11,7 @@
       <img [src]="languageName == 'english'?'assets/images/IrelandFlag.png':'assets/images/BrazilFlag.png'"
         alt="Language Flag">
       <ul (clickOutside)="toggleLanguageOptionsIsOpen(false)" [@inOutAnimation] *ngIf="languageOptionsIsOpen"
-        class="languageOptions">
+        class="dropdown">
         <li (click)="dispatchLanguage('english')">
           <img src="assets/images/IrelandFlag.png" alt="Ireland Flag - Language Option">
           <span>English</span>
@@ -29,9 +29,9 @@
         <img [src]="volume != 0?'assets/images/SoundOpen.png':'assets/images/SoundMuted.png'" alt="Sound Icon">
       </button>
       <ul (clickOutside)="toggleVolumeRangeIsOpen(false)" [@inOutAnimation] *ngIf="volumeRangeIsOpen"
-        class="languageOptions">
+        class="dropdown volumeOptions">
+        <span>{{volume}}</span>
         <input [(ngModel)]="volume" (ngModelChange)="dispatchVolume()" type="range">
-        {{volume}}
       </ul>
     </li>
     <li>{{time}}</li>
