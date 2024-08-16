@@ -1,3 +1,4 @@
+import { colorsReducer } from './store/colors/colors.reducer';
 import { windowReducer } from './store/window/window.reducer';
 import { languageReducer } from './store/language/language.reducer';
 import { soundReducer } from './store/sound/sound.reducer';
@@ -17,6 +18,8 @@ import { FormsModule } from '@angular/forms';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { NgxParticlesModule } from "@tsparticles/angular";
+import { IconComponent } from './Components/icon/icon.component';
+import { ColorsComponent } from './Components/colors/colors.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +30,9 @@ import { NgxParticlesModule } from "@tsparticles/angular";
     LtrMusicPlayerComponent,
     ProjectronComponent,
     BiographBotComponent,
+    ColorsComponent,
     WindowComponent,
+    IconComponent,
   ],
   imports: [
     NgxParticlesModule,
@@ -39,6 +44,7 @@ import { NgxParticlesModule } from "@tsparticles/angular";
       soundReducer,
       windowReducer,
       languageReducer,
+      colorsReducer,
     }),
     StoreDevtoolsModule.instrument({ maxAge: 25 }),
   ],

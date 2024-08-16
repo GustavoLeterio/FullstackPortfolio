@@ -1,0 +1,28 @@
+<app-window [closable]="true" [windowName]="'colors'" [title]="(language$|async)?.windowName??''"
+  [position]="position">
+
+  <section class="content">
+    <p>{{(language$|async)?.title}}</p>
+    <div class="colors">
+      <label for="primary">
+        {{(language$|async)?.primary}}
+        <input (change)="resetParticles()" (input)="changeColor($event,'primary')" name="primary" type="color" value='{{(colors$|async)?.primary}}'>
+      </label>
+      <label for="secondary">
+        {{(language$|async)?.secondary}}
+        <input (change)="resetParticles()" (input)="changeColor($event,'secondary')" name="secondary" type="color" value='{{(colors$|async)?.secondary}}'>
+      </label>
+    </div>
+    <div class="fonts">
+      <label for="white">
+        {{(language$|async)?.light}}
+        <input id='white' (change)="changeColor($event,'font')" name="font" type="radio" value="white">
+      </label>
+      <label for="black">
+        {{(language$|async)?.dark}}
+        <input id='black' (input)="changeColor($event,'font')" name="font" type="radio" value="black" checked>
+      </label>
+    </div>
+    <button (click)="[resetColors(),resetParticles()]"><span>Reset</span></button>
+  </section>
+</app-window>

@@ -2,9 +2,12 @@
   display: flex;
   gap: 1rem;
   flex-direction: column;
+  align-items:center;
   width: max-content;
   max-width: 25vw;
   padding: 1rem 1.5rem;
+
+
   p{
     font-size: 1.5rem;
   }

@@ -5,7 +5,6 @@
   --primary-color: #ffc9c9;
   --secondary-color: #6361a1;
   --link-color: #166AB7;
-  // --window-shadow:;
 }
 
 * {
@@ -13,11 +12,16 @@
   padding: 0;
   box-sizing: border-box;
   font-family: 'VT323';
+  color: var(--font-color);
 }
 
 body {
   background-color: var(--secondary-color);
   overflow: hidden;
+}
+
+img{
+  user-select: none;
 }
 
 .window {

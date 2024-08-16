@@ -136,6 +136,7 @@ export class NavbarComponent {
   dispatchVolume() {
     this.store.dispatch(changeVolume({ volume: this.volume }));
   }
+
   openWindow(windowName: WindowNames) {
     this.store.dispatch(
       toggleWindow({ windowName: windowName, setOpen: true })

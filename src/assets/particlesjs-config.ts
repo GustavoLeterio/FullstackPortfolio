@@ -21,9 +21,9 @@ export const particlesSettings: ISourceOptions = {
   interactivity: {
     detectsOn: 'window',
     events: {
-      onClick: {
+      onHover: {
         enable: true,
-        mode: 'push',
+        mode:'grab'
       },
       resize: {
         delay: 0.5,
@@ -59,7 +59,7 @@ export const particlesSettings: ISourceOptions = {
         mode: 'delete',
         value: 0,
       },
-      value: 120,
+      value: 200,
     },
     opacity: {
       value: .3,
@@ -83,6 +83,7 @@ export const particlesSettings: ISourceOptions = {
       enable: true,
       frequency: 1,
       opacity: 0.4,
+      width: 1,
       shadow: {
         blur: 5,
         color: {
@@ -90,7 +91,6 @@ export const particlesSettings: ISourceOptions = {
         },
         enable: false,
       },
-      width: 1,
     },
 
   },

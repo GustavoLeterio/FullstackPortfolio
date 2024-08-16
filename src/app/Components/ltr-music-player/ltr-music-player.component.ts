@@ -140,7 +140,7 @@ export class LtrMusicPlayerComponent {
       ...this.music.wave?.options,
       container: '#waveform',
       waveColor: 'grey',
-      progressColor: 'purple',
+      progressColor: getComputedStyle(document.body).getPropertyValue('--secondary-color'),
       url: source,
       cursorColor: 'transparent',
       height: 50,

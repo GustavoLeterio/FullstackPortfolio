@@ -7,6 +7,7 @@ export const inicialState: TWindowState = {
   callMeBaby: { open: true, zIndex: 1 },
   homePage: { open: true, zIndex: 0 },
   ltrMusicPlayer: { open: true, zIndex: 1 },
+  colors: { open: true, zIndex: 2 },
   projectron: { open: false, zIndex: 0 },
 };
 

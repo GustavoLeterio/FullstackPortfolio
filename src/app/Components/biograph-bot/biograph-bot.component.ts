@@ -10,15 +10,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 export class BiographBotComponent {
   @Input() isClosed: boolean = false;
   @Output() isClosedChange: EventEmitter<boolean> = new EventEmitter<boolean>();
-  @Input({ required: true }) isWindowClosed: {
-    [id in WindowNames]: boolean;
-  } = {
-    callMeBaby: true,
-    homePage: true,
-    ltrMusicPlayer: true,
-    projectron: false,
-    biographBot: false,
-  };
+
   close() {
     this.isClosed = true;
     this.isClosedChange.emit(this.isClosed);

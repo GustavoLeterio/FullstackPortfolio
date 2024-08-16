@@ -3,4 +3,5 @@ export type WindowNames =
   | 'callMeBaby'
   | 'homePage'
   | 'ltrMusicPlayer'
+  | 'colors'
   | 'projectron';

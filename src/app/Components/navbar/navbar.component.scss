@@ -21,6 +21,7 @@ nav {
 
     &>li {
       position: relative;
+
       .volumeOptions {
         flex-direction: row !important;
         align-items: center;
@@ -68,7 +69,7 @@ nav {
               background-repeat: no-repeat;
               background-position: center;
               background-color: white;
-              box-shadow: 0 0 0 2px black, -80px 0 0 80px var(--link-color);
+              box-shadow: 0 0 0 2px black, -80px 0 0 80px purple;
               filter: brightness(1.1);
             }
           }
@@ -139,6 +140,7 @@ nav {
       }
 
       .dropdown {
+        z-index: 10000000000000;
         position: absolute;
         top: calc(100% + 1px);
         left: -2px;
