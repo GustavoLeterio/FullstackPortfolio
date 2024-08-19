@@ -3,7 +3,7 @@ nav {
   justify-content: space-between;
   align-items: center;
   background-color: var(--primary-color);
-  border: 2px solid black;
+  border: 2px solid var(--font-color);
 
   ul {
     display: flex;
@@ -38,7 +38,7 @@ nav {
           background-color: var(--secondary-color);
           cursor: w-resize;
           border-radius: 1rem;
-          box-shadow: 0 0 0 2px black;
+          box-shadow: 0 0 0 2px var(--font-color);
           background: transparent;
           height: 1rem;
           -webkit-appearance: none;
@@ -140,7 +140,6 @@ nav {
       }
 
       .dropdown {
-        z-index: 10000000000000;
         position: absolute;
         top: calc(100% + 1px);
         left: -2px;
@@ -148,7 +147,7 @@ nav {
         flex-direction: column;
         height: fit-content;
         background-color: var(--primary-color);
-        border: 2px solid black;
+        border: 2px solid var(--font-color);
         transition: 100ms ease-in-out;
         cursor: default;
 
@@ -161,7 +160,7 @@ nav {
           align-items: center;
           border: none;
           padding: .25rem .5rem;
-          border-top: 2px solid black;
+          border-top: 2px solid var(--font-color);
 
           &:first-child {
             border: none;
@@ -171,6 +170,9 @@ nav {
 
       img {
         width: 1.25rem;
+        &.white {
+          filter: invert(1)
+        }
       }
 
       background-color: var(--primary-color);
@@ -192,7 +194,7 @@ nav {
       align-items: center;
       gap: .5rem;
       font-size: 1.25rem;
-      border-right: 2px solid black;
+      border-right: 2px solid var(--font-color);
     }
   }
 }

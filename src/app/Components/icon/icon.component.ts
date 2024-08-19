@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { WindowNames } from '../../../Types/TWindowNames';
-import { toggleWindow } from '../../store/window/window.actions';
+import { focusWindow, toggleWindow } from '../../store/window/window.actions';
 import { TWindowState } from '../../store/window/window.state';
 import { Store } from '@ngrx/store';
 
@@ -25,5 +25,6 @@ export class IconComponent {
     this.store.dispatch(
       toggleWindow({ windowName: this.windowName, setOpen: true })
     );
+    this.store.dispatch(focusWindow({windowName:this.windowName}))
   }
 }

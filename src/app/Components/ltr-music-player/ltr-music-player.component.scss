@@ -10,7 +10,7 @@
   .isPaused {
     font-size: 1.5rem;
     width: 100%;
-    border-bottom: 2px solid black;
+    border-bottom: 2px solid var(--font-color);
     padding-bottom: .5rem;
     text-align: center;
   }
@@ -33,7 +33,7 @@
     display: flex;
 
     li {
-      border: 2px solid black;
+      border: 2px solid var(--font-color);
 
       &:first-child {
         border-radius: .5rem 0 0 .5rem;
@@ -55,7 +55,10 @@
         path {
           transition: 100ms ease-in-out;
         }
-
+        svg path {
+          fill: var(--font-color);
+          stroke: var(--font-color);
+        }
         &:hover {
           svg path {
             fill: var(--secondary-color);

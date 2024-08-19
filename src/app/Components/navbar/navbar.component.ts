@@ -12,6 +12,11 @@ import { changeLanguage } from '../../store/language/language.actions';
 import { map } from 'rxjs';
 import { changeVolume } from '../../store/sound/sound.actions';
 import { ISoundState } from '../../store/sound/sound.state';
+import { IColorsState } from '../../store/colors/colors.state';
+import { refreshToInitialValues } from '../../store/colors/colors.actions';
+import { loadSlim } from '@tsparticles/slim';
+import { NgParticlesService } from '@tsparticles/angular';
+import { Engine } from '@tsparticles/engine';
 
 @Component({
   selector: 'app-navbar',
@@ -61,7 +66,9 @@ export class NavbarComponent {
       windowReducer: TWindowState;
       languageReducer: ILanguageState;
       soundReducer: ISoundState;
-    }>
+      colorsReducer: IColorsState;
+    }>,
+    private readonly ngParticlesService: NgParticlesService
   ) {}
 
   ngOnInit() {
@@ -115,6 +122,7 @@ export class NavbarComponent {
     .select('languageReducer')
     .pipe(map((e) => e.texts.navbar));
   sound$ = this.store.select('soundReducer').pipe(map((e) => e));
+  colors$ = this.store.select('colorsReducer').pipe(map((e) => e));
   languageName: TLanguageOptions = this.isRegionPT() ? 'portuguese' : 'english';
 
   dispatchLanguage(language: TLanguageOptions) {
@@ -140,6 +148,16 @@ export class NavbarComponent {
   openWindow(windowName: WindowNames) {
     this.store.dispatch(
       toggleWindow({ windowName: windowName, setOpen: true })
+    );
+  }
+  toggleTheme() {
+    var theme: 'Dark' | 'Light' | undefined;
+    this.colors$.forEach((e) => {
+      theme = e.theme == 'Dark' ? 'Light' : 'Dark';
+    });
+    this.store.dispatch(refreshToInitialValues({ theme }));
+    this.ngParticlesService.init(async (engine: Engine) =>
+      loadSlim(engine, true)
     );
   }
 }

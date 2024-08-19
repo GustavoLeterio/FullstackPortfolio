@@ -5,7 +5,7 @@ export const changeColor = createAction(
   '[Colors] Change Color',
   props<IColorsState>()
 );
-export const resetParticlesColors = createAction(
-  '[Colors] Change Color',
+export const refreshToInitialValues = createAction(
+  '[Colors] Refresh Colors',
   props<IColorsState>()
 );

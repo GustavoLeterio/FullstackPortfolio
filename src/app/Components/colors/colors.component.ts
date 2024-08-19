@@ -2,14 +2,17 @@ import { loadSlim } from '@tsparticles/slim';
 import { Component, EventEmitter, HostListener, Output } from '@angular/core';
 import { ILanguageState } from '../../store/language/language.state';
 import { map, Observable } from 'rxjs';
-import { Store } from '@ngrx/store';
+import { select, Store } from '@ngrx/store';
 import { NgParticlesService } from '@tsparticles/angular';
 import { Engine } from '@tsparticles/engine';
-import { changeColor } from '../../store/colors/colors.actions';
+import {
+  changeColor,
+  refreshToInitialValues,
+} from '../../store/colors/colors.actions';
 import { IColors, IColorsState } from '../../store/colors/colors.state';
 import {
-  inicialState as colorsInicialState,
-  inicialState,
+  lightModeInicialState,
+  darkModeInicialState,
 } from '../../store/colors/colors.reducer';
 
 @Component({
@@ -58,30 +61,19 @@ export class ColorsComponent {
         [prop]: e.target.value,
       })
     );
-    const root = <HTMLElement>document.querySelector(':root');
-    root.style.setProperty(`--${prop}-color`, e.target.value);
   }
+
+  resetColors(toggleTheme: boolean = false) {
+    var theme: 'Dark' | 'Light' | undefined;
+    this.colors$.forEach((e) => {
+      theme = toggleTheme ? (e.theme == 'Dark' ? 'Light' : 'Dark') : e.theme;
+    });
+    this.store.dispatch(refreshToInitialValues({ theme }));
+  }
+
   resetParticles() {
     this.ngParticlesService.init(async (engine: Engine) =>
       loadSlim(engine, true)
     );
-  }
-
-  resetColors() {
-    this.store.dispatch(
-      changeColor({
-        ...colorsInicialState,
-      })
-    );
-    const root = <HTMLElement>document.querySelector(':root');
-    Object.keys(colorsInicialState).forEach((prop, i) => {
-      root.style.setProperty(
-        `--${prop}-color`,
-        Object.values(colorsInicialState)[i]
-      );
-    });
-    setTimeout(()=>{
-      this.resetParticles();
-    })
   }
 }

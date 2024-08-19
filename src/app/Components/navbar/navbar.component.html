@@ -26,13 +26,17 @@
   <ul class="time">
     <li>
       <button (click)="toggleVolumeRangeIsOpen(!volumeRangeIsOpen)">
-        <img [src]="volume != 0?'assets/images/SoundOpen.png':'assets/images/SoundMuted.png'" alt="Sound Icon">
+        <img [class]="(colors$|async)?.font" [src]="volume != 0?'assets/images/SoundOpen.png':'assets/images/SoundMuted.png'" alt="Sound Icon">
       </button>
       <ul (clickOutside)="toggleVolumeRangeIsOpen(false)" [@inOutAnimation] *ngIf="volumeRangeIsOpen"
         class="dropdown volumeOptions">
         <span>{{volume}}</span>
         <input [(ngModel)]="volume" (ngModelChange)="dispatchVolume()" type="range">
       </ul>
+    </li>
+    <li>
+      <img (click)="toggleTheme()" *ngIf="(colors$|async)?.theme == 'Light'" src="../../../assets/svgs/moon.svg" alt="Dark Mode" title="Dark Mode">
+      <img style='filter:invert(1)'(click)="toggleTheme()" *ngIf="(colors$|async)?.theme == 'Dark'" src="../../../assets/svgs/sun.svg" alt="Light Mode" title="Light Mode">
     </li>
     <li>{{time}}</li>
   </ul>

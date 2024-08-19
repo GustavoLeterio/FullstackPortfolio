@@ -5,8 +5,12 @@
   z-index: -2;
 }
 
-main * {
+main *, app-navbar {
   position: relative;
+}
+
+app-navbar{
+  z-index: 10000000000000000;
 }
 
 .desktop_icons {
