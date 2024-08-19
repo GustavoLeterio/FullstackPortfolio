@@ -26,7 +26,7 @@ export const darkModeInicialState: IColors = {
 };
 
 export const colorsReducer = createReducer(
-  darkModeInicialState,
+  lightModeInicialState,
   on(changeColor, (state, action) => {
     const newState:IColors = {
       ...state,

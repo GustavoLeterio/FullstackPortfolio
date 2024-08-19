@@ -35,8 +35,8 @@
       </ul>
     </li>
     <li>
-      <img (click)="toggleTheme()" *ngIf="(colors$|async)?.theme == 'Light'" src="../../../assets/svgs/moon.svg" alt="Dark Mode" title="Dark Mode">
-      <img style='filter:invert(1)'(click)="toggleTheme()" *ngIf="(colors$|async)?.theme == 'Dark'" src="../../../assets/svgs/sun.svg" alt="Light Mode" title="Light Mode">
+      <img [class]="(colors$|async)?.font == 'white' ?'white':''" (click)="toggleTheme()" *ngIf="(colors$|async)?.theme == 'Light'" src="../../../assets/svgs/moon.svg" alt="Dark Mode" title="Dark Mode">
+      <img [class]="(colors$|async)?.font == 'white' ?'white':''" (click)="toggleTheme()" *ngIf="(colors$|async)?.theme == 'Dark'" src="../../../assets/svgs/sun.svg" alt="Light Mode" title="Light Mode">
     </li>
     <li>{{time}}</li>
   </ul>

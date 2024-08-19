@@ -40,8 +40,8 @@ export class ColorsComponent {
   //X and Y as percentage position of the screen,
   //simple translate(-50%,-50%) and left/top manipulation on WindowComponent
   position: { x: number; y: number } = {
-    x: (window.innerWidth * 15) / 100,
-    y: (window.innerHeight * 80) / 100,
+    x: (window.innerWidth * 30) / 100,
+    y: (window.innerHeight * 30) / 100,
   };
 
   timeoutResize: any;
