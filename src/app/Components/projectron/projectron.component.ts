@@ -1,6 +1,11 @@
+import { map, Observable } from 'rxjs';
 import { TextProjectronWindow } from '../../../Interfaces/ITextProjectronWindow';
-import { WindowNames } from '../../../Types/TWindowNames';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
+import { TWindowState } from '../../store/window/window.state';
+import { Store } from '@ngrx/store';
+import { ILanguageState } from '../../store/language/language.state';
+import { Project } from '../../../Interfaces/IProject';
+import { Technology } from '../../../Interfaces/ITechnology';
 
 @Component({
   selector: 'window-projectron',
@@ -8,26 +13,40 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styleUrl: './projectron.component.scss'
 })
 export class ProjectronComponent {
-  @Input() isClosed: boolean = false;
-  @Output() isClosedChange: EventEmitter<boolean> = new EventEmitter<boolean>();
+  constructor(
+    private store: Store<{
+      windowReducer: TWindowState;
+      languageReducer: ILanguageState;
+    }>
+  ) { }
+  language$: Observable<TextProjectronWindow> = this.store
+    .select('languageReducer')
+    .pipe(map((e) => e.texts.projectronWindow));
 
-  close() {
-    this.isClosed = true;
-    this.isClosedChange.emit(this.isClosed);
+  ngOnInit(): void {
+    this.language$
+      .subscribe((e) => (this.listHandler.selectedTechnolgy = e.technologies.frontend[0]));
   }
-  @Output()windowOpen:EventEmitter<String> = new EventEmitter<String>();
 
-  @Input({ required: true }) windowText: TextProjectronWindow = {
-    windowName: '',
-    title: '',
-    presentation: '',
-    curiosities: [],
-    optionsTitleText: '',
-    options: [],
+  listHandler: { selectedTechnolgy: Technology, selectedProject: Project, year: number } = {
+    selectedTechnolgy: {
+      name: 'Javascript',
+      category: 'Backend',
+      timeStudied: new Date(),
+      description: '',
+    },
+    selectedProject: {
+      name: '',
+      description: '',
+      images: [],
+      date: new Date(),
+      technologies: [],
+    },
+    year: new Date().getFullYear(),
   };
 
-  ngOnInit() {
-    console.log(this.windowText);
+  changeSelectedTechnology(technology: Technology) {
+    this.listHandler.selectedTechnolgy = technology; 
   }
 
   //X and Y as percentage position of the screen,

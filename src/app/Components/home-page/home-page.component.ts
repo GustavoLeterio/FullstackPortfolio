@@ -32,11 +32,6 @@ export class HomePageComponent {
     y: (window.innerHeight * 40) / 100,
   };
 
-  ngOnInit() {
-    this.window$.subscribe((res) => {
-      console.log(res);
-    });
-  }
 
   timeoutResize: any;
   @HostListener('window:resize')

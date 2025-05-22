@@ -1,1 +1,67 @@
-<p>projectron works!</p>
+<app-window [windowName]="'projectron'" [title]="(language$|async)?.windowName??''" [position]="position">
+  <Section class="content">
+    <header>
+      <h1>{{(language$|async)?.title}}</h1>
+    </header>
+    <div class="text_content">
+      <div class="technologies">
+        <span>{{(language$|async)?.subtitle}}</span>
+        <div class="technology_lists">
+          <div class="list">
+            <p>--Front-End</p>
+            <ul>
+              <li *ngFor="let technology of (language$|async)?.technologies?.frontend; let i = index">
+                <span (click)="changeSelectedTechnology(technology)">{{technology.name}}</span>
+              </li>
+            </ul>
+          </div>
+          <div class="list">
+            <p>--Back-End</p>
+            <ul>
+              <li *ngFor="let technology of (language$|async)?.technologies?.backend; let i = index">
+                <span (click)="changeSelectedTechnology(technology)">{{technology.name}}</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="technology_view">
+        <h1>{{listHandler.selectedTechnolgy.name}}</h1>
+        <p>{{listHandler.selectedTechnolgy.description}}</p>
+        <div class="time_info">
+          <!-- <app-icon [icon]="'clock'" [size]="20"></app-icon> -->
+          <p>
+            {{(language$|async)?.timeStudied?.replace('X',(listHandler.year-listHandler.selectedTechnolgy.timeStudied.getFullYear()).toString())}}
+          </p>
+
+        </div>
+        <div class="project_grid">
+          <ng-container *ngFor="let project of (language$|async)?.projects">
+            <div *ngIf="project.technologies.includes(listHandler.selectedTechnolgy.name)" class="project">
+              <div class="images">
+                <img src="../../../assets/images/imgmock.jpg" alt="{{project.name}}" />
+                <img class="after_image img_1" src="../../../assets/images/imgmock2.jpg" alt="">
+                <img class="after_image img_2" src="../../../assets/images/imgmock1.webp" alt="">
+              </div>
+              <h2>{{project.name}}</h2>
+              <p>{{project.date | date: 'dd/MM/yyyy'}}</p>
+              <span>{{project.technologies.toString().replace(',',', ')}}</span>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+      <div *ngIf="listHandler.selectedProject.name!=''" class="project_view">
+        <div class="title">
+          <span>seta p tras</span>
+          <h1>{{listHandler.selectedProject.name}}</h1>
+        </div>
+        <p>{{listHandler.selectedProject.description}}</p>
+
+        <div class="image_grid">
+          <img *ngFor="let image of listHandler.selectedProject.images; let i" [src]="image"
+            alt="{{'Project Image '+i}}" />
+        </div>
+      </div>
+    </div>
+  </Section>
+</app-window>
