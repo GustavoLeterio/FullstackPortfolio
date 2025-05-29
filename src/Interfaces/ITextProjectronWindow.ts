@@ -8,5 +8,6 @@ export interface TextProjectronWindow {
   technologies:{frontend:Technology[]; backend:Technology[]};
   projectListTitle: String;
   timeStudied: String;
+  someImages: String;
   projects:Project[];
 }

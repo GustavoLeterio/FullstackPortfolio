@@ -13,6 +13,7 @@ import { Technology } from '../../../Interfaces/ITechnology';
   styleUrl: './projectron.component.scss'
 })
 export class ProjectronComponent {
+
   constructor(
     private store: Store<{
       windowReducer: TWindowState;
@@ -25,10 +26,18 @@ export class ProjectronComponent {
 
   ngOnInit(): void {
     this.language$
-      .subscribe((e) => (this.listHandler.selectedTechnolgy = e.technologies.frontend[0]));
+      .subscribe((e) => {
+        this.listHandler.selectedTechnolgy = e.technologies.frontend[0]
+        this.listHandler.selectedProject = e.projects[0]
+      });
+
+    this.listHandler.slideShow = {
+      show: true,
+      index: 0
+    }
   }
 
-  listHandler: { selectedTechnolgy: Technology, selectedProject: Project, year: number } = {
+  listHandler: { selectedTechnolgy: Technology, selectedProject: Project, year: number, slideShow: { show: boolean, index: number } } = {
     selectedTechnolgy: {
       name: 'Javascript',
       category: 'Backend',
@@ -42,11 +51,48 @@ export class ProjectronComponent {
       date: new Date(),
       technologies: [],
     },
+    slideShow: {
+      show: false,
+      index: 0
+    },
     year: new Date().getFullYear(),
   };
 
+  closeImageSlideShow() {
+    this.listHandler.slideShow.show = false;
+  }
+
   changeSelectedTechnology(technology: Technology) {
-    this.listHandler.selectedTechnolgy = technology; 
+    this.resetSelectedProject();
+    this.listHandler.selectedTechnolgy = technology;
+  }
+  changeSelectedProject(project: Project) {
+    this.listHandler.selectedProject = project;
+  }
+  resetSelectedProject() {
+    this.listHandler.selectedProject = {
+      name: '',
+      description: '',
+      images: [],
+      date: new Date(),
+      technologies: [],
+    };
+  }
+
+  setImageSlideShow(image: number) {
+    this.listHandler.slideShow = {
+      show: true,
+      index: image
+    }
+  }
+  closeImageSlideShowOnClick() {
+    this.listHandler.slideShow = {
+      show: false,
+      index: 0
+    }
+  }
+  changeImageSlideShowIndex(index: number) {
+    this.listHandler.slideShow.index = index >= 0 && index < this.listHandler.selectedProject.images.length ? index : this.listHandler.slideShow.index;
   }
 
   //X and Y as percentage position of the screen,

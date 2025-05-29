@@ -51,6 +51,7 @@ const languages: {
       windowName: 'Projectron',
       title: 'Projetos & ecnologias',
       subtitle: 'Pesquise um pouco em meus conhecimentos:',
+      someImages: 'Algumas imagens:',
       technologies: {
         backend: [
           { category: 'Frontend', name: 'Javascript', timeStudied: new Date('2018-01-01'), description: 'JavaScript é uma linguagem de programação geralmente usada para desenvolvimento web, permitindo interatividade em páginas da web.' },
@@ -163,6 +164,7 @@ const languages: {
       windowName: 'Projectron',
       title: 'Projects & Technologies',
       subtitle: 'Search between my knwoledge and projects:',
+      someImages: 'Some images:',
       technologies: {
         frontend: [
           { category: 'Frontend', name: 'Javascript', timeStudied: new Date('2018-01-01'), description: 'Javascript is a programming language that is commonly used in web development. It allows developers to create interactive and dynamic web pages, and is supported by all modern web browsers.' },
@@ -187,7 +189,7 @@ const languages: {
           description: 'This is a description of project 1.',
           date: new Date('2023-01-01'),
           technologies: ['Javascript', 'Angular'],
-          images: ['image1.jpg', 'image2.jpg'],
+          images: ['image1.jpg', 'image2.jpg', 'image3.jpg'],
         },
         {
           name: 'Project 2',

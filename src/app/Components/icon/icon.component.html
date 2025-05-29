@@ -1,4 +1,4 @@
 <div (click)="openWindow()" class="icon">
   <img draggable="false" src="{{src}}" alt="{{text}} Icon">
-  <span>{{text}}</span>
+  <span *ngIf="text!=''">{{text}}</span>
 </div>

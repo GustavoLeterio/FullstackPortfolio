@@ -4,7 +4,7 @@
       <h1>{{(language$|async)?.title}}</h1>
     </header>
     <div class="text_content">
-      <div class="technologies">
+      <div class="technologies" *ngIf="!listHandler.slideShow.show">
         <span>{{(language$|async)?.subtitle}}</span>
         <div class="technology_lists">
           <div class="list">
@@ -25,19 +25,17 @@
           </div>
         </div>
       </div>
-      <div class="technology_view">
+      <div *ngIf="listHandler.selectedProject.name == ''" class="technology_view">
         <h1>{{listHandler.selectedTechnolgy.name}}</h1>
         <p>{{listHandler.selectedTechnolgy.description}}</p>
         <div class="time_info">
-          <!-- <app-icon [icon]="'clock'" [size]="20"></app-icon> -->
-          <p>
-            {{(language$|async)?.timeStudied?.replace('X',(listHandler.year-listHandler.selectedTechnolgy.timeStudied.getFullYear()).toString())}}
-          </p>
-
+          <img src="../../../assets/svgs/clock.svg" alt="clock" />
+          {{(language$|async)?.timeStudied?.replace('X',(listHandler.year-listHandler.selectedTechnolgy.timeStudied.getFullYear()).toString())}}
         </div>
         <div class="project_grid">
           <ng-container *ngFor="let project of (language$|async)?.projects">
-            <div *ngIf="project.technologies.includes(listHandler.selectedTechnolgy.name)" class="project">
+            <div (click)="changeSelectedProject(project)"
+              *ngIf="project.technologies.includes(listHandler.selectedTechnolgy.name)" class="project">
               <div class="images">
                 <img src="../../../assets/images/imgmock.jpg" alt="{{project.name}}" />
                 <img class="after_image img_1" src="../../../assets/images/imgmock2.jpg" alt="">
@@ -50,18 +48,44 @@
           </ng-container>
         </div>
       </div>
-      <div *ngIf="listHandler.selectedProject.name!=''" class="project_view">
+      <div *ngIf="listHandler.selectedProject.name!='' && !listHandler.slideShow.show" class="project_view">
         <div class="title">
-          <span>seta p tras</span>
+          <svg (click)="resetSelectedProject()" class="retrocess" width="12" height="17" viewBox="0 0 12 17" fill="none"
+            xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M10.5 0H7.5V1.54545H6V3.09091H4.5V4.63636H3V6.18182H1.5V7.72727H0V9.27273H1.5V10.8182H3V12.3636H4.5V13.9091H6V15.4545H7.5V17H10.5V15.4545H12V13.9091H10.5V12.3636H9V10.8182H7.5V9.27273H6V7.72727H7.5V6.18182H9V4.63636H10.5V3.09091H12V1.54545H10.5V0Z"
+              fill="black" />
+          </svg>
           <h1>{{listHandler.selectedProject.name}}</h1>
         </div>
-        <p>{{listHandler.selectedProject.description}}</p>
-
-        <div class="image_grid">
-          <img *ngFor="let image of listHandler.selectedProject.images; let i" [src]="image"
-            alt="{{'Project Image '+i}}" />
+        <div class="project_info">
+          <p>{{listHandler.selectedProject.description}}</p>
+          <p class="technology_bubbles"><span
+              *ngFor="let technology of listHandler.selectedProject.technologies">{{technology}}</span></p>
+          <p>{{listHandler.selectedProject.date | date: 'dd/MM/yyyy'}}</p>
+          <p>{{(language$|async)?.someImages}}</p>
+          <div class="image_grid">
+            <img *ngFor="let image of listHandler.selectedProject.images; let i = index" (click)="setImageSlideShow(i)"
+              src="https://thispersondoesnotexist.com/" alt="{{'Project Image '+i}}" />
+          </div>
         </div>
       </div>
+    </div>
+    <div class="img_slider" *ngIf="listHandler.slideShow.show">
+      <button class="close_button" (click)="closeImageSlideShow()">X</button>
+      <button (click)="changeImageSlideShowIndex(listHandler.slideShow.index-1)"
+        class="movement_button previous">&lt;</button>
+      <div class="imgs" *ngFor="let image of listHandler.selectedProject.images; let i = index"
+        [style]="'transform:translateX(-'+(listHandler.slideShow.index)*100+'%)'">
+        <img src="https://thispersondoesnotexist.com/" alt="{{'Project Image '+i}}" />
+        <!-- <img src="../../../assets/images/imgmock.jpg" />
+        <img src="../../../assets/images/imgmock2.jpg" alt="">
+        <img src="../../../assets/images/imgmock1.webp" alt=""> -->
+
+      </div>
+
+      <button (click)="changeImageSlideShowIndex(listHandler.slideShow.index+1)"
+        class="movement_button next">&gt;</button>
     </div>
   </Section>
 </app-window>

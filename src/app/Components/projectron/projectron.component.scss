@@ -85,7 +85,7 @@
                         transform-origin: center;
 
                         .images {
-                            filter: brightness(1.1);
+                            filter: brightness(1.2);
                             transform: scale(1.02);
                             transform-origin: center;
                             transition: ease-in-out 200ms;
@@ -132,8 +132,156 @@
                 }
             }
         }
+
+        .project_view {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+
+            .title {
+                padding: 1rem 1.5rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 100%;
+                position: relative;
+                border-bottom: 2px solid var(--font-color);
+
+                svg {
+                    position: absolute;
+                    left: 1rem;
+                    cursor: pointer;
+
+                    fill {
+                        transition: ease-in-out 1000ms;
+                        fill: black;
+                    }
+
+                    transition: ease-in-out 200ms;
+
+                    &:hover {
+                        path {
+                            fill: var(--link-color);
+                        }
+                    }
+                }
+            }
+
+            .project_info {
+                padding: 1rem 1.5rem;
+                overflow: overlay;
+
+                .technology_bubbles {
+                    display: flex;
+                    gap: 1rem;
+                    align-items: center;
+                    margin: .5rem 0;
+                    flex-wrap: wrap;
+
+                    span {
+                        padding: .25rem 1rem;
+                        border-radius: .25rem;
+                        background-color: var(--secondary-color);
+                        color: white;
+                        text-shadow:
+                            -2px -2px 0 #000,
+                            2px -2px 0 #000,
+                            -2px 2px 0 #000,
+                            2px 2px 0 #000,
+                            -3px 0px 0 #000,
+                            3px 0px 0 #000,
+                            0px -3px 0 #000,
+                            0px 3px 0 #000;
+                    }
+                }
+
+                .image_grid {
+                    display: grid;
+                    grid-template-columns: repeat(3, 1fr);
+                    gap: 1rem;
+
+                    img {
+                        border: 3px solid var(--font-color);
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+
+                        &:hover {
+                            cursor: pointer;
+                            filter: brightness(1.2);
+                            transform: scale(1.02);
+                            transform-origin: center;
+                            transition: ease-in-out 200ms;
+                        }
+                    }
+                }
+
+
+            }
+        }
+
+
     }
 
+    .img_slider {
+        display: flex;
+        position: relative;
+        background-color: var(--primary-color);
+        width: 80vw;
+        overflow: hidden;
+
+        .close_button {
+            font-size: 2rem;
+            z-index: 1;
+            position: absolute;
+            cursor: pointer;
+            background-color: transparent;
+            scale: 1;
+            transition: ease-in-out 200ms;
+            padding: 1rem 2rem;
+            border: none;
+            &:hover {
+                scale: 1.2;
+            }
+        }
+
+        .imgs {
+            display: flex;
+            align-items: center;
+            transition: ease-in-out 200ms;
+            img {
+                object-fit: contain;
+                width: 80vw;
+                height: 100%;
+                max-height: 80vh;
+                transition: ease-in-out 200ms;
+            }
+        }
+
+
+        .movement_button {
+            z-index: 1;
+            font-size: 3rem;
+            position: absolute;
+            height: 50%;
+            align-self: center;
+            border: none;
+            cursor: pointer;
+            background-color: transparent;
+
+            scale: 1;
+            transition: ease-in-out 200ms;
+            padding: 0 2rem;
+
+            &:hover {
+                scale: 1.2;
+            }
+
+            &.next {
+                right: 0;
+            }
+        }
+    }
 }
 
 @keyframes imgOneAnimation {
