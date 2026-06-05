@@ -19,7 +19,7 @@ const languages: {
         'Hello there, I hope you`re doing well! Nice to meet you, I`m Gustavo Letério!',
       curiosities: [
         'Learning coding skills since 2018',
-        'Higher Degree as a System’s Analyst and Developer',
+        'Higher Degree as a System Analyst and Developer',
         'Interested both in front and back',
         'Loves gym, music, coding, and self-improvement',
       ],
@@ -49,9 +49,9 @@ const languages: {
     },
     projectronWindow: {
       windowName: 'Projectron',
-      title: 'Projetos & ecnologias',
-      subtitle: 'Pesquise um pouco em meus conhecimentos:',
-      someImages: 'Algumas imagens:',
+      title: 'Projects & Technologies',
+      subtitle: 'Search between my knwoledge and projects:',
+      someImages: 'Some images:',
       technologies: {
         frontend: [
           { category: 'Frontend', name: 'Javascript', timeStudied: new Date('2018-01-01'), description: 'Javascript is a programming language that is commonly used in web development. It allows developers to create interactive and dynamic web pages, and is supported by all modern web browsers.' },
@@ -68,8 +68,8 @@ const languages: {
           { category: 'Backend', name: 'PostgreSQL', timeStudied: new Date('2018-01-01'), description: 'PostgreSQL is a powerful, open-source object-relational database system. It is known for its reliability, feature robustness, and performance.' }
         ],
       },
-      projectListTitle: 'Projetos recentes:',
-      timeStudied: 'Tempo de estudo - X Anos',
+      timeStudied: 'Time studied - X Years',
+      projectListTitle: 'Recent Projects:',
       projects: [
         {
           name: 'Project 1',
@@ -132,7 +132,7 @@ const languages: {
       curiosities: [
         'Treinando programação desde 2018',
         'Formado em Análise e Desenvolvimento de Sistemas',
-        'Interessado tanto em front quanto back',
+        'Interessado tanto em front quanto em back',
         'Ama academia, música, código e desenvolvimento pessoal',
       ],
       optionsTitleText: 'Você vai achar algo legal aqui!',
@@ -160,10 +160,10 @@ const languages: {
       dark: 'Fonte Preta',
     },
     projectronWindow: {
-      windowName: 'Projectron',
-      title: 'Projects & Technologies',
-      subtitle: 'Search between my knwoledge and projects:',
-      someImages: 'Some images:',
+            windowName: 'Projectron',
+      title: 'Projetos & Tecnologias',
+      subtitle: 'Pesquise um pouco em meus conhecimentos:',
+      someImages: 'Algumas imagens:',
 technologies: {
         backend: [
           { category: 'Frontend', name: 'Javascript', timeStudied: new Date('2018-01-01'), description: 'JavaScript é uma linguagem de programação geralmente usada para desenvolvimento web, permitindo interatividade em páginas da web.' },
@@ -181,8 +181,8 @@ technologies: {
 
         ],
       },
-      timeStudied: 'Time studied - X Years',
-      projectListTitle: 'Recent Projects:',
+            projectListTitle: 'Projetos recentes:',
+      timeStudied: 'Tempo de estudo - X Anos',
       projects: [
         {
           name: 'Project 1',
