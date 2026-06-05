@@ -32,7 +32,7 @@ export class ProjectronComponent {
       });
 
     this.listHandler.slideShow = {
-      show: true,
+      show: false,
       index: 0
     }
   }
