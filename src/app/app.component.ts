@@ -35,6 +35,7 @@ export class AppComponent {
   draggingCoordenates: { i: number; j: number } = { i: 0, j: 0 };
 
   ngAfterViewInit(): void {
+    alert("Website currently under development...")
     const root = <HTMLElement>document.querySelector(':root');
     this.colors$.forEach((e) => {
       console.log(e);

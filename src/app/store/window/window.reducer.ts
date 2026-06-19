@@ -8,7 +8,7 @@ export const inicialState: TWindowState = {
   homePage: { open: true, zIndex: 0 },
   ltrMusicPlayer: { open: true, zIndex: 1 },
   colors: { open: false, zIndex: 2 },
-  projectron: { open: true, zIndex: 5 },
+  projectron: { open: false, zIndex: 5 },
 };
 
 export const windowReducer = createReducer(
