@@ -16,14 +16,14 @@ const languages: {
       windowName: 'Home Page',
       title: 'Full-Stack Developer',
       presentation:
-        'Yeah, you just found what you were looking for: your brand-new, creative, dedicated, and most beautiful Full-Stack dev!',
+        'Yes, you`ve found the right professional: a developer who tackles challenges with strategy, dynamism, and technical excellence.',
       curiosities: [
         'Learning coding skills since 2018',
         'Higher Degree as a System’s Analyst and Developer',
         'Interested both in front and back',
         'Loves gym, music, coding, and self-improvement',
       ],
-      optionsTitleText: 'You may find something cool here!',
+      optionsTitleText: 'You may find something interesting here!',
       options: [
         { windowName: 'biographBot', text: 'About Me' },
         { windowName: 'projectron', text: 'Projects & Technologies' },
@@ -129,14 +129,14 @@ const languages: {
       windowName: 'Página Inicial',
       title: 'Full-Stack Developer',
       presentation:
-        'Sim, você acabou de achar o que estava procurando: seu mais novo, criativo, dedicado e mais lindo full-stack dev!',
+        'Sim, você encontrou o profissional certo: um desenvolvedor que encara desafios com estratégia, dinamismo e excelência técnica.',
       curiosities: [
-        'Treinando programação desde 2018',
+        'Trabalhando em programação desde 2018',
         'Formado em Análise e Desenvolvimento de Sistemas',
         'Interessado tanto em front quanto back',
         'Ama academia, música, código e desenvolvimento pessoal',
       ],
-      optionsTitleText: 'Você vai achar algo legal aqui!',
+      optionsTitleText: 'Você vai achar algo interessante aqui!',
       options: [
         { windowName: 'biographBot', text: 'Sobre Mim' },
         { windowName: 'projectron', text: 'Tecnologias & Projetos' },

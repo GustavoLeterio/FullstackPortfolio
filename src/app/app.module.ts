@@ -20,7 +20,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { NgxParticlesModule } from "@tsparticles/angular";
 import { IconComponent } from './Components/icon/icon.component';
 import { ColorsComponent } from './Components/colors/colors.component';
-
+import { NgOptimizedImage } from '@angular/common'
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,6 +40,7 @@ import { ColorsComponent } from './Components/colors/colors.component';
     BrowserAnimationsModule,
     ClickOutsideDirective,
     FormsModule,
+    NgOptimizedImage,
     StoreModule.forRoot({
       soundReducer,
       windowReducer,
