@@ -20,7 +20,8 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { NgxParticlesModule } from "@tsparticles/angular";
 import { IconComponent } from './Components/icon/icon.component';
 import { ColorsComponent } from './Components/colors/colors.component';
-import { NgOptimizedImage } from '@angular/common'
+import { NgOptimizedImage } from '@angular/common';
+import { DesktopIconHandlerComponent } from './Components/desktop-icon-handler/desktop-icon-handler.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,6 +34,7 @@ import { NgOptimizedImage } from '@angular/common'
     ColorsComponent,
     WindowComponent,
     IconComponent,
+    DesktopIconHandlerComponent,
   ],
   imports: [
     NgxParticlesModule,

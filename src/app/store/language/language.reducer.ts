@@ -16,11 +16,7 @@ const languages: {
       windowName: 'Home Page',
       title: 'Full-Stack Developer',
       presentation:
-<<<<<<< HEAD
-        'Yes, you`ve found the right professional: a developer who tackles challenges with strategy, dynamism, and technical excellence.',
-=======
         'Hello there, I hope you`re doing well! Nice to meet you, I`m Gustavo Letério!',
->>>>>>> 84efdc193a8e46acd0e7dc09aa10ef3e31d9937b
       curiosities: [
         'Learning coding skills since 2018',
         'Higher Degree as a System Analyst and Developer',
@@ -132,11 +128,7 @@ const languages: {
       windowName: 'Página Inicial',
       title: 'Full-Stack Developer',
       presentation:
-<<<<<<< HEAD
-        'Sim, você encontrou o profissional certo: um desenvolvedor que encara desafios com estratégia, dinamismo e excelência técnica.',
-=======
         'Olá, é um prazer te conhecer! Como você vai? Meu nome é Gustavo Letério!',
->>>>>>> 84efdc193a8e46acd0e7dc09aa10ef3e31d9937b
       curiosities: [
         'Trabalhando em programação desde 2018',
         'Formado em Análise e Desenvolvimento de Sistemas',

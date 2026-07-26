@@ -1,0 +1,9 @@
+<div class="desktop_icons">
+    <div class="table_line" *ngFor="let icons of desktopIconHandler;index as row;">
+      <div class="table_cell" *ngFor="let icon of icons; index as col;" id="{{row + ',' + col}}"
+        (dragover)="allowDrop($event)" (drop)="drop($event)" [draggable]="icon.src !=''" (drag)="drag($event)">
+        <app-icon *ngIf="icon.src !=''" [windowName]="icon.windowName" [src]="icon.src" [text]="icon.text">
+        </app-icon>
+      </div>
+    </div>
+</div>
